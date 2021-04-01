@@ -35,6 +35,10 @@ app.listen(port, () => {
   // CREATE ------------------------------------------------------------------
   // ***** Insert a new document into the db *********************************
   app.post("/items", (request, response) => {
+    console.log("insert request body", request.body);
+    console.log("insert request params", request.params);
+    console.log("insert request query", request.query);
+
     collection.insertOne(request.body, (error, result) => {
       if (error) return response.status(500).send(error);
       response.send(result.ops[0]._id); // send back the new item ID
